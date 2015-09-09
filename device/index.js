@@ -1,3 +1,3 @@
 require('babel/register');
-
-require('./device.js');
+var device = require('./device.js');
+module.exports = device;

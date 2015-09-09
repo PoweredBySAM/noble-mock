@@ -2,7 +2,7 @@
   "name": "noble-mock",
   "version": "0.0.1",
   "description": "Noble Mock",
-  "main": "index.js",
+  "main": "./lib/noble-mock.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,6 +18,6 @@
   "homepage": "https://github.com/PoweredBySAM/noble-mock#readme",
   "dependencies": {
     "babel": "^5.8.23",
-    "easy-ipc": "^0.2.2"
+    "node-ipc": "^2.0.0"
   }
 }
