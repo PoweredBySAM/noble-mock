@@ -1,13 +1,10 @@
 import EventEmitter from 'events'
 import ipc from 'node-ipc'
 
-import * as types from './data'
-
 ipc.config.id = 'device-client'
 ipc.config.retry = 1500
 
-export const createDevice = (namespace, type) => {
-  const deviceType = types[type]
+export const createDevice = (namespace, deviceType) => {
   const device = new Device(namespace, deviceType)
   return device
 }
