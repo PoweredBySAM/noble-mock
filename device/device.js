@@ -6,15 +6,16 @@ import * as types from './data'
 ipc.config.id = 'device-client'
 ipc.config.retry = 1500
 
-export const createDevice = (type) => {
+export const createDevice = (namespace, type) => {
   const deviceType = types[type]
-  const device = new Device(deviceType)
+  const device = new Device(namespace, deviceType)
   return device
 }
 
 class Device extends EventEmitter {
-  constructor(params) {
+  constructor(namespace, params) {
     super()
+    ipc.config.appspace = namespace + "."
     this.params = params
     ipc.connectTo('noblemock', () => {
       ipc.of.noblemock.on('connect', () => {

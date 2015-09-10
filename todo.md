@@ -15,11 +15,6 @@
  
 # TODO:
 
- - switch to ipc communication
  - design proper device mock api
  - support characteristics [?]
- - better input fomat (real module.js definition?)
  - implement interactive client 
-
-
-
