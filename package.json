@@ -18,6 +18,8 @@
   "homepage": "https://github.com/PoweredBySAM/noble-mock#readme",
   "dependencies": {
     "babel": "^5.8.23",
+    "lodash": "^3.10.1",
+    "lodash-deep": "^1.6.0",
     "node-ipc": "^2.0.0"
   }
 }

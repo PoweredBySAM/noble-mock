@@ -1,6 +1,6 @@
-
 import EventEmitter from 'events'
 import ipc from 'node-ipc'
+
 import * as types from './data'
 
 ipc.config.id = 'device-client'
@@ -12,14 +12,15 @@ export const createDevice = (type) => {
   return device
 }
 
-export class Device extends EventEmitter {
-  constructor(device) {
+class Device extends EventEmitter {
+  constructor(params) {
     super()
-    Object.assign(this, device)
+    this.params = params
     ipc.connectTo('noblemock', () => {
       ipc.of.noblemock.on('connect', () => {
         ipc.log('connected to mock'.rainbow, ipc.config.delay)
-        ipc.of.noblemock.emit('message', 'hello')
+        console.log(params)
+        ipc.of.noblemock.emit('client:connected', this.params)
       })
       ipc.of.noblemock.on('disconnect', () => {
         ipc.log('disconnected from mock'.notice)
