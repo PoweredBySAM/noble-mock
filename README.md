@@ -1,10 +1,10 @@
 # noble-mock
 
-noble-mock replicates basic APIs and behaviour's of noble.js to allow
+noble-mock mimics basic API's and behaviours of noble.js to allow
 automated or manual testing without using real BLE device. it comes in two parts:
 
-noble-mock itself (lib/) - 'noble server' mock that is instantiated instead of noble on an app level
-virtual device (device/) - 'client' part, exposing APIs for testing. will be separated to another module at some point.
+ - noble-mock itself (lib/) - 'noble server' mock that is instantiated instead of noble on an app level
+ - virtual device (device/) - 'client' part, exposing APIs for testing. *will be separated to another module at some point.*
 
 communication happens over IPC channel.
 
