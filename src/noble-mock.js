@@ -1,4 +1,4 @@
-import EventEmitter from 'events'
+import { EventEmitter } from 'events'
 
 import ipc from 'node-ipc'
 
@@ -17,9 +17,9 @@ const createPeripheral = (data) => {
 
 class NobleMock extends EventEmitter {
   constructor(namespace) {
+    super()
     ipc.config.appspace = namespace + "." || "noname."
     console.log("creating noble mock")
-    super()
     this._peripherals = []
 
     ipc.serve(() => {

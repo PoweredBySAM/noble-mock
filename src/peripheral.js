@@ -1,11 +1,13 @@
 import Ipc from 'easy-ipc'
-import EventEmitter from 'events'
+import { EventEmitter } from 'events'
 import * as types from './data'
+import * as _ from 'lodash'
 
 export default class NoblePeripheral extends EventEmitter {
   constructor(data) {
     super()
-    Object.assign(this, data)
+    // Object.assign(this, data)
+    _.assign(this, data)
     this.ipc = new Ipc({
       socketPath: '/tmp/noble-mock.sock'
     })

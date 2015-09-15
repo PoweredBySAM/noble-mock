@@ -1,4 +1,4 @@
-import EventEmitter from 'events'
+import { EventEmitter } from 'events'
 import ipc from 'node-ipc'
 
 ipc.config.id = 'device-client'
