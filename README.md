@@ -16,6 +16,8 @@ communication happens over IPC channel.
 
 server part:
 ```js
+require('babel/register'); // needed for es6 transpilation
+
 if (process.env.NOBLE_MOCK) {
   // `AppNamespace` is a namespace for IPC channel
   noble = require('noble-mock')('AppNamespace');
