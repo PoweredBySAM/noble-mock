@@ -8,6 +8,10 @@ automated or manual testing without using real BLE device. it comes in two parts
 
 communication happens over IPC channel.
 
+# building
+
+`npm run build`
+
 # usage
 
 server part:
