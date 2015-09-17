@@ -12,7 +12,7 @@
     "type": "git",
     "url": "git+https://github.com/PoweredBySAM/noble-mock.git"
   },
-  "author": "SAM Labs",
+  "author": "SAM Labs <tech@samlabs.me>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/PoweredBySAM/noble-mock/issues"
@@ -20,7 +20,6 @@
   "homepage": "https://github.com/PoweredBySAM/noble-mock#readme",
   "dependencies": {
     "babel": "^5.8.23",
-    "easy-ipc": "^0.2.2",
     "lodash": "^3.10.1",
     "lodash-deep": "^1.6.0",
     "node-ipc": "^2.0.0"

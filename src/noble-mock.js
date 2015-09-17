@@ -10,8 +10,8 @@ ipc.config.id = 'noblemock'
 ipc.config.retry = 1500
 
 const createPeripheral = (data) => {
-  data = parseDeviceData(data)
-  const peripheral = new NoblePeripheral(data)
+  let dataParsed = parseDeviceData(data)
+  const peripheral = new NoblePeripheral(dataParsed)
   return peripheral;
 }
 
@@ -35,7 +35,8 @@ class NobleMock extends EventEmitter {
       })
       ipc.server.on('client:disconnected', (data, socket) => {
         // TODO: handle manual disconnect
-        this.removeClient(data, socket)
+        // this.removeClient(data, socket)
+        this.removeAllClients();
       })
     })
     ipc.server.start()
@@ -50,7 +51,7 @@ class NobleMock extends EventEmitter {
     console.log("noble stopScanning")
   }
   on() {
-    console.log("on:", arguments)
+    // console.log("on:", arguments)
     super.on(...arguments)
   }
   addPeripheral(peripheral) {
@@ -76,6 +77,9 @@ class NobleMock extends EventEmitter {
   }
   removeClient(client, socket) {
     console.log("remove client")
+  }
+  removeAllClients() {
+    this._peripherals = []
   }
 }
 

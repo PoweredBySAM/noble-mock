@@ -26,5 +26,4 @@ export default class NoblePeripheral extends EventEmitter {
   disconnect() {
     console.log("peripheral disconnected.")
   }
-
 }

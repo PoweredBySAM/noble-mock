@@ -18,3 +18,8 @@
  - design proper device mock api
  - support characteristics [?]
  - implement interactive client 
+
+ # e2e:
+
+ - turn on, appear in live sams
+ - turn off, disappear
