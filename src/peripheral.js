@@ -1,23 +1,29 @@
-import Ipc from 'easy-ipc'
 import { EventEmitter } from 'events'
-import * as types from './data'
 import * as _ from 'lodash'
+import Characteristic from './characteristic'
+
+const createCharacteristics = (chars, socket, ipc) => {
+  return _.map(chars, (value, key) => {
+    return new Characteristic(value, key, socket, ipc)
+  })
+}
 
 export default class NoblePeripheral extends EventEmitter {
-  constructor(data) {
+  constructor(data, socket, ipc) {
     super()
-    // Object.assign(this, data)
     _.assign(this, data)
-    this.ipc = new Ipc({
-      socketPath: '/tmp/noble-mock.sock'
-    })
-    this.ipc.on('connect', (connection) => {
-      connection.write({data: 'connected'})
-    })
+    this.ipc = ipc
+    this.socket = socket
+    this.characteristics = createCharacteristics(this.uuids, socket, ipc)
   }
 
-  discoverSomeServicesAndCharacteristics() {
-    console.log("TODO: discover some services")
+  discoverSomeServicesAndCharacteristics(services, characteristics, callback) {
+    callback(null, this.characteristics, this.characteristics);
+  }
+
+  updateRssi(callback) {
+    this.rssi = 100
+    callback(null, this.rssi)
   }
   connect() {
     this.emit("connect", null);

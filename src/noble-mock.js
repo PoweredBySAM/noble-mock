@@ -8,10 +8,11 @@ import parseDeviceData from './parser'
 
 ipc.config.id = 'noblemock'
 ipc.config.retry = 1500
+ipc.config.silent = true
 
-const createPeripheral = (data) => {
+const createPeripheral = (data, socket, ipc) => {
   let dataParsed = parseDeviceData(data)
-  const peripheral = new NoblePeripheral(dataParsed)
+  const peripheral = new NoblePeripheral(dataParsed, socket, ipc)
   return peripheral;
 }
 
@@ -19,7 +20,9 @@ class NobleMock extends EventEmitter {
   constructor(namespace) {
     super()
     ipc.config.appspace = namespace + "." || "noname."
+
     console.log("creating noble mock")
+
     this._peripherals = []
 
     ipc.serve(() => {
@@ -30,7 +33,6 @@ class NobleMock extends EventEmitter {
         this.addClient(data, socket)
       })
       ipc.server.on('client:change', (data, socket) => {
-        // TODO: handle value change
         this.updateClient(data, socket)
       })
       ipc.server.on('client:disconnected', (data, socket) => {
@@ -44,11 +46,11 @@ class NobleMock extends EventEmitter {
     setTimeout(this.start.bind(this), 10)
   }
   startScanning() {
-    console.log("noble startScanning")
-    setTimeout(this.discover.bind(this), 1000)
+    console.log("nobleMock startScanning")
+    setTimeout(this.startDiscovery.bind(this), 1000)
   }
   stopScanning() {
-    console.log("noble stopScanning")
+    console.log("nobleMock stopScanning")
   }
   on() {
     // console.log("on:", arguments)
@@ -60,16 +62,16 @@ class NobleMock extends EventEmitter {
   start() {
     this.emit("stateChange", "poweredOn")
   }
-  discover() {
+  startDiscovery() {
     console.log("starting fake discovery")
+    this.emit("scanStart")
     setInterval(this.fakeDiscover.bind(this), 1000)
   }
   fakeDiscover() {
     this._peripherals.forEach((p) => { this.emit("discover", p) } )
   }
   addClient(client, socket) {
-    console.log("adding client:", client)
-    const peripheral = createPeripheral(client)
+    const peripheral = createPeripheral(client, socket, ipc)
     this._peripherals.push(peripheral)
   }
   updateClient(client, socket) {
