@@ -2,7 +2,6 @@ import { EventEmitter } from 'events'
 
 import ipc from 'node-ipc'
 
-import * as types from './data'
 import NoblePeripheral from './peripheral'
 import parseDeviceData from './parser'
 
