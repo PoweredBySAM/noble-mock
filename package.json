@@ -6,7 +6,7 @@
   "scripts": {
     "clean": "rm -rf lib/",
     "postinstall": "npm run clean && npm run build",
-    "build": "./node_modules/babel/bin/babel.js src --out-dir lib"
+    "build": "babel src --out-dir lib"
   },
   "repository": {
     "type": "git",
