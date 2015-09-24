@@ -1,4 +1,3 @@
-import Ipc from 'easy-ipc'
 import { EventEmitter } from 'events'
 import * as _ from 'lodash'
 
