@@ -1,12 +1,12 @@
 # noble-mock
 
 noble-mock mimics basic API's and behaviours of noble.js to allow
-automated or manual testing without using real BLE device. it comes in two parts:
+automated or manual testing without using real BLE device.
 
- - noble-mock itself (lib/) - 'noble server' mock that is instantiated instead of noble on an app level
- - virtual device (device/) - 'client' part, exposing APIs for testing. *will be separated to another module at some point.*
+this is the server part of the mock. the client part 
+is located at: [noble-mock-device](http://github.com/PoweredBySAM/noble-mock-device)
 
-communication happens over IPC channel.
+communication happens over an IPC channel.
 
 # building
 
@@ -16,7 +16,6 @@ communication happens over IPC channel.
 
 server part:
 ```js
-require('babel/register'); // needed for es6 transpilation
 
 if (process.env.NOBLE_MOCK) {
   // `AppNamespace` is a namespace for IPC channel
@@ -26,22 +25,20 @@ if (process.env.NOBLE_MOCK) {
 }
 ```
 
-client part:
-```js
-require('babel/register'); // needed for es6 transpilation
+# reflected api's:
 
-var device = require('./device');
+  - noble.startScanning()
+  - noble.stopScanning()
+  - noble.on()
+  - noble.addPeripheral()
 
-// device type definition
-const myDeviceData = {
-  advertisement: {
-    localName: 'MyDevice Name',
-    manufacturerData: new Buffer('xxxxxxxxxxxx','hex')
-  }
-}
+  - peripheral.characteristics
+  - peripheral.discoverSomeServicesAndCharacteristics()
+  - peripheral.updateRssi()
+  - peripheral.connect()
+  - peripheral.disconnect()
+(peripheral gets extended with client data sent over ipc channel when connection is estabilished)
 
-var myDevice = device.createDevice('AppNamespace', myDeviceData);
-
-// `myDevice` will now expose APIs for testing (TODO)
-```
-
+  - characteristic.write()
+  - characteristic.on()
+  - characteristic.notify()
