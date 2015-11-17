@@ -4,9 +4,9 @@
   "description": "Noble Mock",
   "main": "./lib/noble-mock.js",
   "scripts": {
-    "clean": "node_modules/.bin/rimraf lib/",
+    "clean": "rimraf lib/",
     "postinstall": "npm run clean && npm run build",
-    "build": "node_modules/.bin/babel src --out-dir lib"
+    "build": "babel src --out-dir lib"
   },
   "repository": {
     "type": "git",
