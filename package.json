@@ -1,6 +1,6 @@
 {
   "name": "noble-mock",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Noble Mock",
   "main": "./lib/noble-mock.js",
   "scripts": {
